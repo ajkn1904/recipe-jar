@@ -1,16 +1,53 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const SignIn = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInError, setSignInError] = useState('');
+    const {userSignIn, userSignInWithProvider, loading, setLoading} = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider()
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathName || '/'
+    
 
-    const handleSignIn = data => {
-        console.log(data)
+
+
+    if (loading) {
+        return <button className="btn btn-ghost text-red-700 loading"></button>
     }
+
+    const handleSignIn = (data) => {
+        userSignIn(data.email, data.password)
+        .then(res => {
+            const user = res.user;
+            console.log(user);
+            setSignInError('');
+            navigate('/');
+            })
+            .catch(error => {
+                setSignInError(error.message);
+                setLoading(false);
+
+            })
+    }
+
+
+    const handleGoogleSignIn = () => {
+        userSignInWithProvider(googleProvider)
+        .then(res => {
+            const user = res.user;
+            console.log(user);
+            navigate('/');
+        })
+        .catch(error => setSignInError(error.message));
+    }
+
 
 
     return (
@@ -54,7 +91,7 @@ const SignIn = () => {
 
                         <div className="divider">OR</div>
 
-                        <button className="w-full my-3 btn btn-outline btn-info" type="submit"><FaGoogle className='mr-2' /> <span>CONTINUE WITH GOOGLE</span></button>
+                        <button onClick={handleGoogleSignIn} className="w-full my-3 btn btn-outline btn-info" type="submit"><FaGoogle className='mr-2' /> <span>CONTINUE WITH GOOGLE</span></button>
 
                     </div>
 

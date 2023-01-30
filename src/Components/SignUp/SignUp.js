@@ -1,16 +1,77 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa'
 import { useForm } from 'react-hook-form';
+import { GoogleAuthProvider } from 'firebase/auth';
+import { AuthContext } from '../Context/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm()
-    const [registerError, setRegisterError] = useState('')
+    const {userSignUp, userSignInWithProvider, loading, setLoading, userUpdateProfile} = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
+    const [registerError, setRegisterError] = useState('');
+    const navigate = useNavigate();
 
 
-    const handleRegister = (data) => {
-        console.log(data)
+ 
+    if(loading){
+        return <button className="btn btn-ghost text-red-700 loading"></button>
     }
+
+
+ 
+    const handleGoogleBtn = () => {
+        userSignInWithProvider(googleProvider)
+        .then(res => {
+            const user = res.user;
+            console.log(user);
+            navigate('/');
+        })
+        .catch(err =>  setRegisterError(err.message));
+    }
+
+
+
+    const handleProfile = (data) => {
+
+        const profile = {
+            displayName: data.name
+        }
+        userUpdateProfile(profile)
+        .then(() => {navigate('/')})
+        .catch(error => {
+            console.error(error);
+        })
+    }
+
+    const handleRegister = data => {
+
+        if(data.length < 6){
+            setRegisterError('Password must be at least 6 character long.');
+            return setRegisterError;
+        }
+
+        if (data.password !== data.confirmPassword) {
+            setRegisterError('Your password did not match.')
+            return setRegisterError;
+        }
+
+        userSignUp(data.email, data.password)
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+            setRegisterError('');
+            toast.success("Registration Successful")
+            handleProfile(data);     
+        })
+        .catch(error => {
+            setRegisterError(error.message);
+            console.error(error);
+        })
+
+    }
+
 
     return (
         <div className='flex justify-center items-center my-20 p-4'>
@@ -74,7 +135,7 @@ const SignUp = () => {
 
                         <div className="divider">OR</div>
 
-                        <button className="w-full my-3 btn btn-outline btn-info" type="submit"><FaGoogle className='mr-2' /> <span>CONTINUE WITH GOOGLE</span></button>
+                        <button onClick={handleGoogleBtn} className="w-full my-3 btn btn-outline btn-info" type="submit"><FaGoogle className='mr-2' /> <span>CONTINUE WITH GOOGLE</span></button>
 
                     </div>
 
