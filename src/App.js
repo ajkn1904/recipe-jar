@@ -6,6 +6,7 @@ import Recipes from './Components/Recipes/Recipes';
 import MyRecipes from './Components/MyRecipes/MyRecipes';
 import SignIn from './Components/SignIn/SignIn';
 import SignUp from './Components/SignUp/SignUp';
+import RecipeDetails from './RecipeDetails/RecipeDetails';
 
 function App() {
 
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
       {
         path: "/recipes",
         element: <Recipes/>
+      },
+      {
+        path: "/recipes/:id",
+        loader: async ({params}) => fetch(`http://localhost:5000/recipes/${params.id}`),
+        element: <RecipeDetails/>
       },
       {
         path: "/myRecipes",
