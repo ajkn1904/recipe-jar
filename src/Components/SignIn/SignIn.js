@@ -43,9 +43,12 @@ const SignIn = () => {
         .then(res => {
             const user = res.user;
             console.log(user);
-            navigate('/');
+            navigate(from, {replace: true});
         })
-        .catch(error => setSignInError(error.message));
+        .catch(error => {
+            setLoading(false);
+            setSignInError(error.message);
+        });
     }
 
 

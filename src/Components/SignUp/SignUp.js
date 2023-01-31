@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa'
 import { useForm } from 'react-hook-form';
 import { GoogleAuthProvider } from 'firebase/auth';
@@ -8,27 +8,41 @@ import { toast } from 'react-hot-toast';
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm()
-    const {userSignUp, userSignInWithProvider, loading, setLoading, userUpdateProfile} = useContext(AuthContext);
+    const { userSignUp, userSignInWithProvider, loading, setLoading, userUpdateProfile } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
-    const [registerError, setRegisterError] = useState('');
+    const [signUpError, setSignUpError] = useState('');
     const navigate = useNavigate();
 
 
- 
-    if(loading){
+
+    if (loading) {
         return <button className="btn btn-ghost text-red-700 loading"></button>
     }
 
 
- 
-    const handleGoogleBtn = () => {
-        userSignInWithProvider(googleProvider)
-        .then(res => {
-            const user = res.user;
-            console.log(user);
-            navigate('/');
-        })
-        .catch(err =>  setRegisterError(err.message));
+
+
+    const storeUserDataInDB = (name, email) => {
+        const user = {
+            name, email
+        };
+        console.log(user)
+
+        fetch('http://localhost:5000/users',
+            {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                navigate('/');
+                setLoading(false);
+            })
+
     }
 
 
@@ -39,38 +53,70 @@ const SignUp = () => {
             displayName: data.name
         }
         userUpdateProfile(profile)
-        .then(() => {navigate('/')})
-        .catch(error => {
-            console.error(error);
-        })
+            .then(() => {
+                //navigate('/');
+                storeUserDataInDB(data.name, data.email);
+            })
+            .catch(error => {
+                console.error(error);
+                setSignUpError(error.message);
+                setLoading(false);
+            })
     }
 
-    const handleRegister = data => {
 
-        if(data.length < 6){
-            setRegisterError('Password must be at least 6 character long.');
-            return setRegisterError;
+    const handleSignUp = data => {
+
+        if (data.length < 6) {
+            setSignUpError('Password must be at least 6 character long.');
+            return setSignUpError;
         }
 
         if (data.password !== data.confirmPassword) {
-            setRegisterError('Your password did not match.')
-            return setRegisterError;
+            setSignUpError('Your password did not match.')
+            return setSignUpError;
         }
 
+        setSignUpError('');
+
         userSignUp(data.email, data.password)
-        .then(result => {
-            const user = result.user;
-            console.log(user)
-            setRegisterError('');
-            toast.success("Registration Successful")
-            handleProfile(data);     
-        })
-        .catch(error => {
-            setRegisterError(error.message);
-            console.error(error);
-        })
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                setSignUpError('');
+                toast.success("Sign Up Successful")
+                handleProfile(data);
+            })
+            .catch(error => {
+                setSignUpError(error.message);
+                console.error(error);
+                setLoading(false);
+            })
 
     }
+
+
+
+    
+    const handleGoogleBtn = () => {
+        userSignInWithProvider(googleProvider)
+            .then(res => {
+                const user = res.user;
+                console.log(user);
+                toast.success("Sign Up Successful");
+                setLoading(false);
+                //navigate('/');
+                storeUserDataInDB(user.displayName, user.email);
+            })
+            .catch(err => {
+                setSignUpError(err.message);
+                setLoading(false);
+            });
+    }
+
+
+
+
 
 
     return (
@@ -79,7 +125,7 @@ const SignUp = () => {
             <div className='card shadow-xl w-96 p-7'>
                 <h1 className='text-xl font-bold text-center my-10'>Register Now</h1>
 
-                <form onSubmit={handleSubmit(handleRegister)}>
+                <form onSubmit={handleSubmit(handleSignUp)}>
 
                     <label className="label">
                         <span className="label-text">Name</span>
@@ -124,7 +170,7 @@ const SignUp = () => {
                     {errors.confirmPassword && <p className='text-error'>{errors.confirmPassword?.message}</p>}
 
 
-                    <small className='text-red-600'>{registerError}</small>
+                    <small className='text-red-600'>{signUpError}</small>
 
 
 
