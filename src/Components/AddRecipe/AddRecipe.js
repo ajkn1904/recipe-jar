@@ -1,29 +1,70 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../Context/AuthProvider';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const AddRecipe = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { user } = useContext(AuthContext);
     const [processing, setProcessing] = useState(false);
+    const imgHostKey = process.env.REACT_APP_imgbb_key;
+    const navigate = useNavigate()
 
-    const handleAddProduct = data => {
 
 
-        //console.log(data);
-        const recipe = {
-            name: data.name,
-            image: data.image,
-            ingredients: data.ingredients,
-            cooking_description: data.description,
-            userName: user.displayName,
-            userEmail: user.email
-        }
-        
-        
-        console.log(recipe);
 
+
+    const handleAddRecipe = data => {
+
+        //setProcessing(true);
+        console.log(data.image[0]);
+        const formData = new FormData();
+        formData.append('image', data.image[0]);
+
+        const url = `https://api.imgbb.com/1/upload?&key=${imgHostKey}`
+
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+
+
+
+                    //console.log(data);
+                    const recipe = {
+                        name: data.name,
+                        image: data.image,
+                        ingredients: data.ingredients,
+                        cooking_description: data.description,
+                        userName: user.displayName,
+                        userEmail: user.email
+                    }
+
+
+                    console.log(recipe);
+
+
+                    fetch('http://localhost:5000/users/recipes', {
+                        method: 'POST',
+                        headers: {
+                            "content-type": "application/json"
+                        },
+                        body: JSON.stringify(recipe)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            toast.success('Recipe added successful');
+                            setProcessing(false);
+                            navigate('/myRecipes')
+                        })
+                }
+            })
     }
 
     return (
@@ -32,7 +73,7 @@ const AddRecipe = () => {
             <div className='flex justify-center items-center mb-20 p-4'>
                 <div className='card shadow-xl w-11/12 bg-slate-100 p-7'>
 
-                    <form onSubmit={handleSubmit(handleAddProduct)}>
+                    <form onSubmit={handleSubmit(handleAddRecipe)}>
 
                         <label className="label">
                             <span className="label-text">Name of the Recipe</span>
@@ -58,8 +99,6 @@ const AddRecipe = () => {
                         </label>
                         <input type="text" className="w-full my-3 input input-bordered" placeholder='Apple, Egg, Rice' {...register("ingredients")} />
 
-                        <input type="text"/>
-     
 
 
 
