@@ -17,12 +17,14 @@ const Header = () => {
 
         <li><Link to='/' className='btn btn-ghost rounded font-semibold'>Home</Link></li>
         <li><Link to='/recipes' className='btn btn-ghost rounded font-semibold'>Recipes</Link></li>
-        <li><Link to='/myRecipes' className='btn btn-ghost rounded font-semibold'>MyRecipes</Link></li>
+        <li><Link to='/myRecipes' className='btn btn-ghost rounded font-semibold'>My Recipes</Link></li>
+        <li><Link to='/addRecipe' className='btn btn-ghost rounded font-semibold'>Add Recipe</Link></li>
 
         {
             user?.uid ?
-                <li><Link to='/' onClick={handleSignOut} className='btn btn-ghost rounded font-semibold' >Sign Out</Link></li>
-
+                <>
+                    <li><Link to='/' onClick={handleSignOut} className='btn btn-ghost rounded font-semibold' >Sign Out</Link></li>
+                </>
                 :
                 <>
                     <li><Link to='/signIn' className='btn btn-ghost rounded font-semibold'>Sign In</Link></li>
@@ -62,7 +64,7 @@ const Header = () => {
             {
                 user?.uid &&
                 <div className="navbar-end w-5/12">
-                   <div className="avatar">
+                    <div className="avatar">
                         <div className="w-10 rounded-full ring ring-warning ring-offset-base-100 ring-offset-2">
                             <img title={user?.displayName} src={user?.photoURL} alt="" />
                         </div>

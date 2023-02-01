@@ -7,6 +7,7 @@ import MyRecipes from './Components/MyRecipes/MyRecipes';
 import SignIn from './Components/SignIn/SignIn';
 import SignUp from './Components/SignUp/SignUp';
 import RecipeDetails from './RecipeDetails/RecipeDetails';
+import AddRecipe from './Components/AddRecipe/AddRecipe';
 
 function App() {
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/myRecipes",
         element: <MyRecipes/>
+      },
+      {
+        path: "/addRecipe",
+        element: <AddRecipe/>
       },
       {
         path: "/signIn",

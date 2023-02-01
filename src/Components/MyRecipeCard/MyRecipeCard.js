@@ -13,10 +13,7 @@ const MyRecipeCard = ({ recipe }) => {
             <div className="card-body md:w-5/12 lg:w-8/12">
                 <h2 className="card-title">{name}</h2>
 
-                <div><strong>Ingredients: </strong>
-                    {
-                        ingredients.map(data => <span key={data}>{data}, </span>)
-                    }
+                <div><strong>Ingredients: </strong><span>{ingredients}.</span>
 
                     <div className='mt-6'>
                         <strong>Description: </strong>

@@ -16,10 +16,8 @@ const RecipeDetails = () => {
                 <div className="badge bg-gradient-to-r from-[#3c597a] to-[#41ad35] p-3 font-semibold my-5">
                     <FaUser className='mr-2' /> by {userName}</div>
 
-                <div><strong>Ingredients: </strong>
-                    {
-                        ingredients.map(data => <span>{data}, </span>)
-                    }
+                <div><strong>Ingredients: </strong><span>{ingredients}.</span>
+
 
                     <div className='mt-6'>
                         <strong>Description: </strong>
