@@ -1,9 +1,10 @@
 import React from 'react';
+import HomeBanner from '../AddRecipe/HomeBanner/HomeBanner';
 
 const Home = () => {
     return (
         <div>
-            this is home
+            <HomeBanner/>
         </div>
     );
 };
