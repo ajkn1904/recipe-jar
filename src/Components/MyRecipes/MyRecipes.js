@@ -34,7 +34,7 @@ const MyRecipes = () => {
         const doDelete = window.confirm(`Do you want to delete ${recipeName}'s recipe?`);
         if (doDelete) {
 
-            fetch(`http://localhost:5000/users/recipes/${recipeId}`, {
+            fetch(` https://recipe-jar-server.vercel.app/users/recipes/${recipeId}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -52,7 +52,6 @@ const MyRecipes = () => {
 
 
 
-    console.log(data)
 
     if (isLoading) {
         return <button className="btn btn-ghost text-red-700 loading"></button>

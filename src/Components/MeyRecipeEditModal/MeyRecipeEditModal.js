@@ -6,7 +6,7 @@ import { AuthContext } from '../Context/AuthProvider';
 const MeyRecipeEditModal = ({ editRecipe, setEditRecipe, refetch }) => {
 
     const { user } = useContext(AuthContext)
-    console.log(editRecipe);
+
     const { _id, name, ingredients, cooking_description } = editRecipe;
     const { register, handleSubmit } = useForm();
     const [processing, setProcessing] = useState(false);
@@ -26,7 +26,7 @@ const MeyRecipeEditModal = ({ editRecipe, setEditRecipe, refetch }) => {
             userEmail: user.email,
             status: 'edited'
         }
-        console.log(editedRecipe)
+       
 
         fetch(` https://recipe-jar-server.vercel.app/users/recipes/${_id}`, {
             method: 'PUT',
@@ -39,7 +39,7 @@ const MeyRecipeEditModal = ({ editRecipe, setEditRecipe, refetch }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                
                 if (data.modifiedCount > 0) {
                     setProcessing(false)
                     setEditRecipe(null)
@@ -89,7 +89,7 @@ const MeyRecipeEditModal = ({ editRecipe, setEditRecipe, refetch }) => {
 
                         <div className="flex flex-col w-full border-opacity-50">
 
-                            <button className="w-full my-3 btn text-white" type="submit" disabled={processing}>{processing ? 'Processing' : 'Add Recipe'}</button>
+                        <button className="btn bg-[#fa894d] btn-sm text-white hover:bg-[#d66223] my-4"  data-aos="zoom-in" data-aos-duration="1000" type="submit" disabled={processing}>{processing ? 'Processing' : 'Add Recipe'}</button>
 
 
 

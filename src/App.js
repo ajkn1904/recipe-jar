@@ -19,6 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        loader: () => fetch(' https://recipe-jar-server.vercel.app/recentRecipes'),
         element: <Home/>
       },
       {

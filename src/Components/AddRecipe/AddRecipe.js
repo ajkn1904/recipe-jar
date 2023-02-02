@@ -20,7 +20,7 @@ const AddRecipe = () => {
 
         setProcessing(true);
 
-        console.log(data.image[0]);
+      
         const formData = new FormData();
         formData.append('image', data.image[0]);
 
@@ -36,7 +36,7 @@ const AddRecipe = () => {
 
 
 
-                    //console.log(data);
+                
                     const recipe = {
                         name: data.name,
                         image: result.data.url,
@@ -47,7 +47,6 @@ const AddRecipe = () => {
                     }
 
 
-                    console.log(recipe);
 
 
                     fetch(' https://recipe-jar-server.vercel.app/users/recipes', {
@@ -60,7 +59,7 @@ const AddRecipe = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
+                           
                             toast.success('Recipe added successful');
                             setProcessing(false);
                             navigate('/myRecipes')

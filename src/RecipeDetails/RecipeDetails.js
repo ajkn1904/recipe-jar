@@ -1,18 +1,22 @@
 import React from 'react';
 import { FaUser } from 'react-icons/fa';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import ViewFullImage from '../Components/ViewFullImage/ViewFullImage';
+
+
+
 
 const RecipeDetails = () => {
 
     const { name, image, ingredients, cooking_description, userName } = useLoaderData();
     const navigate = useNavigate()
 
-    console.log(name)
+   
 
     return (
         <div className='w-[80%] md:w-[70%] mx-auto flex justify-between flex-col md:flex-row gap-10 my-20'>
             
-            <img src={image} alt={name} className='w-96 md:w-[400px] h-96' />
+            <ViewFullImage img={image} alt={name} className='w-96 md:w-[400px] h-96' title='Click to view full image.'/>
             
             
             <div className='md:w-[50%]'>

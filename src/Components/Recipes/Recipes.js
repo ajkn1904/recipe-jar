@@ -25,7 +25,7 @@ const Recipes = () => {
             }
         })
 
-    //console.log(data)
+
 
 
 
@@ -44,7 +44,7 @@ const Recipes = () => {
         setSearchRecipe(item)
 
     }
-    console.log(searchRecipe)
+
 
 
 

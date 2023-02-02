@@ -114,7 +114,7 @@ const SignUp = () => {
         userSignInWithProvider(googleProvider)
             .then(res => {
                 const user = res.user;
-                console.log(user);
+                
                 toast.success("Sign Up Successful");
                 storeUserDataInDB(user.displayName, user.email);
             })
