@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom';
 import { BiEdit } from 'react-icons/bi'
 import { MdDeleteOutline } from 'react-icons/md'
 
-const MyRecipeCard = ({ recipe, setEditRecipe }) => {
+const MyRecipeCard = ({ recipe, setEditRecipe, handleDelete }) => {
 
     const { _id, name, image, ingredients, cooking_description, status } = recipe;
 
 
-    const handleRecipe = (data) => {
+    const handleRecipe = data => {
         setEditRecipe(data)
     }
+
+
+    
 
     return (
         <div className="card w-[90%] sm:w-[90%] md:w-[95%] lg:w-[80%] mx-auto bg-base-100 md:card-side lg:card-side shadow-xl" key={_id}>
@@ -37,12 +40,14 @@ const MyRecipeCard = ({ recipe, setEditRecipe }) => {
 
                     <div className='flex items-center gap-5'>
 
-                        <label className='btn btn-circle border-0 bg-green-200 rounded-full hover:text-white hover:bg-green-800' htmlFor="recipe-modal" onClick={() => handleRecipe(recipe)}>
-                            <BiEdit className='h-10 w-10 p-1' />
+                        <label className='btn btn-circle border-0 bg-green-400 rounded-full hover:text-white hover:bg-green-800' htmlFor="recipe-modal" onClick={() => handleRecipe(recipe)}>
+                            <BiEdit className='text-4xl p-1' />
                         </label>
 
 
-                        <MdDeleteOutline className='h-12 w-12 bg-red-200 rounded-full p-2 hover:text-white hover:bg-red-700' />
+                        <label className='btn btn-circle border-0 bg-red-400 rounded-full hover:text-white hover:bg-red-700' htmlFor="recipe-modal" onClick={() => handleDelete(_id, name)}>
+                            <MdDeleteOutline className='text-4xl p-1' />
+                        </label>
 
                     </div>
 

@@ -13,11 +13,11 @@ const HomeBannerSlide = ({data}) => {
         </div>
 
         <div className="absolute flex justify-start gap-4 transform -translate-y-1/2 left-16 top-1/4">
-            <h1 className='text-5xl font-bold text-white w-80'> Boiled/Steamed <br /> Fried/Baked?</h1>
+            <h1 className='text-5xl font-bold text-white w-80'> Boiled/Steamed? <br /> Fried/Baked?</h1>
         </div>
 
         <div className="absolute flex justify-start gap-4 transform -translate-y-1/2 w-[50%] left-16 top-2/4">
-            <p className='text-white text-lg'>No matter how you cook, RECIPE JAR has many the recipes!</p>
+            <p className='text-white text-lg'>No matter how you cook, <span className='text-xl font-semibold text-orange-200'>RECIPE JAR</span> has many the recipes!</p>
         </div>
 
 

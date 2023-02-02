@@ -8,7 +8,7 @@ const MeyRecipeEditModal = ({ editRecipe, setEditRecipe, refetch }) => {
     const { user } = useContext(AuthContext)
     console.log(editRecipe);
     const { _id, name, ingredients, cooking_description } = editRecipe;
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm();
     const [processing, setProcessing] = useState(false);
 
 

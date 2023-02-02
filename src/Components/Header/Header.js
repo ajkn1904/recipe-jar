@@ -53,7 +53,7 @@ const Header = () => {
 
 
                 <img src={logo} alt="logo" className="w-14 h-14 rounded-full" />
-                <Link to="/" className="mx-2 font-bold normal-case text-xl font-serif italic">Recipe Jar</Link>
+                <Link to="/" className="mx-2 font-bold normal-case font-mono italic"><span className='text-5xl text-green-600'>R</span><span className='text-3xl '>ECIPE</span><span className='text-5xl font-semibold text-orange-600'>J<span className='text-3xl'>ar</span></span></Link>
             </div>
 
 

@@ -18,7 +18,8 @@ const AddRecipe = () => {
 
     const handleAddRecipe = data => {
 
-        //setProcessing(true);
+        setProcessing(true);
+
         console.log(data.image[0]);
         const formData = new FormData();
         formData.append('image', data.image[0]);
@@ -78,19 +79,19 @@ const AddRecipe = () => {
         <div>
             <h1 className='text-2xl font-bold text-center mt-10 mb-4'>ADD RECIPE</h1>
             <div className='flex justify-center items-center mb-20 p-4'>
-                <div className='card shadow-xl w-11/12 md:w-6/12 bg-slate-100 p-7'>
+                <div className='card shadow-xl w-11/12 md:w-5/12 bg-gradient-to-r from-green-200 to-orange-50 p-7'>
 
                     <form onSubmit={handleSubmit(handleAddRecipe)}>
 
                         <label className="label">
-                            <span className="label-text">Name of the Recipe</span>
+                            <span className="label-text text-lg">Name of the Recipe</span>
                         </label>
-                        <input type="text" className="w-full my-3 input input-bordered"  {...register("name")} />
+                        <input type="text" className="w-full my-1 input input-bordered"  {...register("name")} />
 
 
 
                         <label className="label">
-                            <span className="label-text">Recipe's image</span>
+                            <span className="label-text text-lg">Recipe's image</span>
                         </label>
                         <input type="file" className="file-input file-input-bordered w-full" {...register("image", {
                             required: 'Photo is required'
@@ -102,36 +103,36 @@ const AddRecipe = () => {
 
 
                         <label className="label">
-                            <span className="label-text">Ingredients</span>
+                            <span className="label-text text-lg">Ingredients</span>
                         </label>
-                        <input type="text" className="w-full my-3 input input-bordered" placeholder='Apple, Egg, Rice' {...register("ingredients")} />
+                        <input type="text" className="w-full my-1 input input-bordered" placeholder='Apple, Egg, Rice' {...register("ingredients")} />
 
 
 
 
                         <label className="label">
-                            <span className="label-text">Description</span>
+                            <span className="label-text text-lg">Description</span>
                         </label>
-                        <input type="text" className="w-full my-3 input input-bordered"  {...register("description")} />
+                        <input type="text" className="w-full my-1 input input-bordered"  {...register("description")} />
 
 
 
 
                         <label className="label">
-                            <span className="label-text">Name of the Recipe Provider</span>
+                            <span className="label-text text-lg">Name of the Recipe Provider</span>
                         </label>
-                        <input type="text" className="w-full my-3 input input-bordered" defaultValue={user?.displayName} readOnly {...register("userName")} />
+                        <input type="text" className="w-full my-1 input input-bordered" defaultValue={user?.displayName} readOnly {...register("userName")} />
 
 
                         <label className="label">
-                            <span className="label-text">Email of the Recipe Provider</span>
+                            <span className="label-text text-lg">Email of the Recipe Provider</span>
                         </label>
-                        <input type="text" className="w-full my-3 input input-bordered" defaultValue={user?.email}  {...register("userEmail")} readOnly />
+                        <input type="text" className="w-full my-1 input input-bordered" defaultValue={user?.email}  {...register("userEmail")} readOnly />
 
 
                         <div className="flex flex-col w-full border-opacity-50">
 
-                            <button className="w-full my-3 btn text-white" type="submit" disabled={processing}>{processing ? 'Processing' : 'Add Recipe'}</button>
+                            <button className="w-full my-10 btn bg-[#fa894d] text-white hover:bg-[#d66223" type="submit" disabled={processing}>{processing ? 'Processing' : 'Add Recipe'}</button>
 
 
 

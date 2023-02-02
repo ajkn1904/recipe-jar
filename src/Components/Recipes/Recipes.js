@@ -61,7 +61,7 @@ const Recipes = () => {
 
                 <form onSubmit={handleSubmit(handleSearch)} className='flex items-center'>
 
-                    <FaSearch className='tex-center text-xl text-orange-600 m-2'/>
+                    <FaSearch className='tex-center text-xl text-green-600 m-2'/>
                     <input type="text" className="w-[100px] input input-bordered border-orange-700"  {...register("search")} />
 
                 </form>
@@ -73,14 +73,14 @@ const Recipes = () => {
 
 
             {sort ?
-                <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mx-12 sm:mx-12 md:mx-14 lg:mx-20 my-20'>
+                <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mx-12 sm:mx-12 md:mx-14 lg:mx-20 mt-10 mb-20'>
                     {searchRecipe.length ?
                         searchRecipe.map(recipe => <RecipeCard recipe={recipe} key={recipe._id}></RecipeCard>)
 
                         :
                         
                         <div className='flex justify-center items-center'>
-                            <p className='tex-center text-4xl font-bold'>No Recipe Found </p> <ImSad className='text-center text-5xl text-orange-600 ml-2'/>
+                            <p className='tex-center text-4xl font-bold text-center text-orange-600 '>No Recipe Found </p> <ImSad className='text-center text-5xl ml-2'/>
                         </div>
                     }
 
