@@ -16,20 +16,20 @@ const Header = () => {
 
     const menu = <>
 
-        <li><Link to='/' className='btn btn-ghost rounded font-semibold'>Home</Link></li>
-        <li><Link to='/recipes' className='btn btn-ghost rounded font-semibold'>Recipes</Link></li>
-        <li><Link to='/myRecipes' className='btn btn-ghost rounded font-semibold'>My Recipes</Link></li>
-        <li><Link to='/addRecipe' className='btn btn-ghost rounded font-semibold'>Add Recipe</Link></li>
+        <li><Link to='/' className='btn btn-ghost rounded font-semibold text-black text-lg hover:bg-orange-500 hover:text-white'>Home</Link></li>
+        <li><Link to='/recipes' className='btn btn-ghost rounded font-semibold text-black text-lg hover:bg-orange-500 hover:text-white'>Recipes</Link></li>
+        <li><Link to='/myRecipes' className='btn btn-ghost rounded font-semibold text-black text-lg hover:bg-orange-500 hover:text-white'>My Recipes</Link></li>
+        <li><Link to='/addRecipe' className='btn btn-ghost rounded font-semibold text-black text-lg hover:bg-orange-500 hover:text-white'>Add Recipe</Link></li>
 
         {
             user?.uid ?
                 <>
-                    <li><Link to='/' onClick={handleSignOut} className='btn btn-ghost rounded font-semibold' >Sign Out</Link></li>
+                    <li><Link to='/' onClick={handleSignOut} className='btn btn-ghost rounded font-semibold text-black text-lg hover:bg-orange-500 hover:text-white' >Sign Out</Link></li>
                 </>
                 :
                 <>
-                    <li><Link to='/signIn' className='btn btn-ghost rounded font-semibold'>Sign In</Link></li>
-                    <li><Link to='/signUp' className='btn btn-ghost rounded font-semibold'>Sign Up</Link></li>
+                    <li><Link to='/signIn' className='btn btn-ghost rounded font-semibold text-black text-lg hover:bg-orange-500 hover:text-white'>Sign In</Link></li>
+                    <li><Link to='/signUp' className='btn btn-ghost rounded font-semibold text-black text-lg hover:bg-orange-500 hover:text-white'>Sign Up</Link></li>
                 </>
         }
 
@@ -37,13 +37,13 @@ const Header = () => {
 
 
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-green-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-green-50 rounded-box w-52">
 
                         {menu}
 

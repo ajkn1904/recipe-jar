@@ -57,11 +57,11 @@ const Recipes = () => {
     return (
         <div>
             <h1 className='text-center text-5xl font-bold mt-14 mb-8'>All Recipes</h1>
-            <div className='flex justify-end items-center gap-2 mr-10'>
+            <div data-aos="fade-left" data-aos-duration="1000" className='flex justify-end items-center gap-2 mr-10'>
 
                 <form onSubmit={handleSubmit(handleSearch)} className='flex items-center'>
 
-                    <FaSearch className='tex-center text-xl text-green-600 m-2'/>
+                    <FaSearch className='tex-center text-xl text-green-600 m-2' />
                     <input type="text" className="w-[100px] input input-bordered border-orange-700"  {...register("search")} />
 
                 </form>
@@ -78,9 +78,9 @@ const Recipes = () => {
                         searchRecipe.map(recipe => <RecipeCard recipe={recipe} key={recipe._id}></RecipeCard>)
 
                         :
-                        
+
                         <div className='flex justify-center items-center'>
-                            <p className='tex-center text-4xl font-bold text-center text-orange-600 '>No Recipe Found </p> <ImSad className='text-center text-5xl ml-2'/>
+                            <p className='tex-center text-4xl font-bold text-center text-orange-600 '>No Recipe Found </p> <ImSad className='text-center text-5xl ml-2' />
                         </div>
                     }
 

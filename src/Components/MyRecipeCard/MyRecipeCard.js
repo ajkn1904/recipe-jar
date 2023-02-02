@@ -13,10 +13,10 @@ const MyRecipeCard = ({ recipe, setEditRecipe, handleDelete }) => {
     }
 
 
-    
+
 
     return (
-        <div className="card w-[90%] sm:w-[90%] md:w-[95%] lg:w-[80%] mx-auto bg-base-100 md:card-side lg:card-side shadow-xl" key={_id}>
+        <div className="card w-[90%] sm:w-[90%] md:w-[95%] lg:w-[80%] mx-auto bg-base-100 md:card-side lg:card-side shadow-xl" key={_id} data-aos="fade-right" data-aos-duration="1000">
             <figure><img src={image} alt={name} className='w-full md:w-72 h-[370px]' /></figure>
             <div className="card-body md:w-5/12 lg:w-8/12">
 
@@ -36,9 +36,9 @@ const MyRecipeCard = ({ recipe, setEditRecipe, handleDelete }) => {
                 </div>
 
                 <div className="card-actions flex justify-between items-center">
-                    <button className="btn bg-[#fa894d] btn-sm text-white hover:bg-[#d66223] my-4"><Link to={`/recipes/${_id}`}>View Details</Link></button>
+                    <button className="btn bg-[#fa894d] btn-sm text-white hover:bg-[#d66223] my-4"  data-aos="zoom-in" data-aos-duration="1000"><Link to={`/recipes/${_id}`}>View Details</Link></button>
 
-                    <div className='flex items-center gap-5'>
+                    <div className='flex items-center gap-5'  data-aos="flip-left" data-aos-duration="1000" data-aos-easing="ease-out-cubic">
 
                         <label className='btn btn-circle border-0 bg-green-400 rounded-full hover:text-white hover:bg-green-800' htmlFor="recipe-modal" onClick={() => handleRecipe(recipe)}>
                             <BiEdit className='text-4xl p-1' />

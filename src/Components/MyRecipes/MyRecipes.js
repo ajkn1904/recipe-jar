@@ -8,7 +8,7 @@ import { toast } from 'react-hot-toast';
 const MyRecipes = () => {
 
     const { user } = useContext(AuthContext);
-    const [ editRecipe, setEditRecipe ] = useState(null)
+    const [editRecipe, setEditRecipe] = useState(null)
 
     const { data = [], isLoading, refetch } = useQuery({
         queryKey: ['recipes'],
@@ -28,7 +28,7 @@ const MyRecipes = () => {
 
 
 
-    
+
 
     const handleDelete = (recipeId, recipeName) => {
         const doDelete = window.confirm(`Do you want to delete ${recipeName}'s recipe?`);
@@ -60,16 +60,21 @@ const MyRecipes = () => {
 
 
 
-    
+
 
     return (
         <div className='w-[80%] mx-auto min-h-[60vh] my-20'>
             <h1 className='text-4xl text-center font-semibold mb-10'>My Recipes</h1>
 
+            {
+                data.length && <p className="text-center text-xl">Your added total:
+                <span className='font-bold text-orange-600'> {data.length} {data.length > 1 ? "recipes." : "recipe."}</span></p>
+            }
+
             {user?.uid && data.length ?
-                <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-12 sm:gap-12 md:gp-9 lg:gap-9 my-24'>
+                <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-20 md:gp-20 my-24'>
                     {data &&
-                        data?.map(recipe => <MyRecipeCard recipe={recipe} key={recipe._id} refetch={refetch} setEditRecipe={setEditRecipe} handleDelete={handleDelete}/>)
+                        data?.map(recipe => <MyRecipeCard recipe={recipe} key={recipe._id} refetch={refetch} setEditRecipe={setEditRecipe} handleDelete={handleDelete} />)
                     }
                 </div>
                 :
