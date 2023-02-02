@@ -129,15 +129,15 @@ const SignUp = () => {
 
 
     return (
-        <div className='flex justify-center items-center my-20 p-4'>
+        <div className='flex justify-center items-center my-20 p-4 '>
 
-            <div className='card shadow-xl w-96 p-7'>
-                <h1 className='text-xl font-bold text-center my-10'>Sign Up</h1>
+            <div className='card shadow-xl w-[95%] md:w-4/12 p-7 bg-gradient-to-r from-green-50'>
+                <h1 className='text-4xl font-bold text-center my-10'>Sign up</h1>
 
                 <form onSubmit={handleSubmit(handleSignUp)}>
 
                     <label className="label">
-                        <span className="label-text">Name</span>
+                        <span className="label-text text-lg">Name</span>
                     </label>
                     <input type="text" className="w-full my-3 input input-bordered"  {...register("name")} />
 
@@ -145,7 +145,7 @@ const SignUp = () => {
 
 
                     <label className="label">
-                        <span className="label-text">Email</span>
+                        <span className="label-text text-lg">Email</span>
                     </label>
                     <input type="email" className="w-full my-3 input input-bordered"  {...register("email", { required: "Email is required" })} />
 
@@ -154,7 +154,7 @@ const SignUp = () => {
 
 
                     <label>
-                        <span className="label-text">Password</span>
+                        <span className="label-text text-lg">Password</span>
                     </label>
                     <input type="password" placeholder='Password' className="w-full my-3 input input-bordered"  {...register("password",
                         {
@@ -168,7 +168,7 @@ const SignUp = () => {
 
 
                     <label>
-                        <span className="label-text">Re-type Password</span>
+                        <span className="label-text text-lg">Re-type Password</span>
                     </label>
                     <input type="password" placeholder='Re-type Password' className="w-full my-3 input input-bordered"  {...register("confirmPassword",
                         {

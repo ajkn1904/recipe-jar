@@ -70,15 +70,15 @@ const SignIn = () => {
 
     return (
         <div className='flex justify-center items-center my-20 p-4'>
-            <div className='card shadow-xl w-96 p-7'>
-                <h1 className='text-xl font-bold text-center my-10'>Sign In</h1>
+            <div className='card shadow-xl w-[95%] md:w-4/12 p-7 bg-gradient-to-r from-green-50'>
+                <h1 className='text-4xl font-bold text-center my-10'>Sign in</h1>
 
                 <form onSubmit={handleSubmit(handleSignIn)}>
 
 
 
                     <label className="label">
-                        <span className="label-text">Email</span>
+                        <span className="label-text text-lg">Email</span>
                     </label>
                     <input type="email" className="w-full my-3 input input-bordered"  {...register("email", { required: "Email is required" })} />
 
@@ -87,7 +87,7 @@ const SignIn = () => {
 
 
                     <label>
-                        <span className="label-text">Password</span>
+                        <span className="label-text text-lg">Password</span>
                     </label>
                     <input type="password" className="w-full my-3 input input-bordered"  {...register("password",
                         {

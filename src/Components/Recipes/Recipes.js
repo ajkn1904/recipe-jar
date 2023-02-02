@@ -11,10 +11,10 @@ const Recipes = () => {
     const { loading } = useContext(AuthContext)
     const [searchRecipe, setSearchRecipe] = useState('');
     const [sort, setSort] = useState(false);
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm();
 
 
-    const { data = [], isLoading, refetch } =
+    const { data = [], isLoading} =
         useQuery({
             queryKey: ['recipes'],
 
