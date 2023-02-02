@@ -28,7 +28,7 @@ const MeyRecipeEditModal = ({ editRecipe, setEditRecipe, refetch }) => {
         }
         console.log(editedRecipe)
 
-        fetch(`http://localhost:5000/users/recipes/${_id}`, {
+        fetch(` https://recipe-jar-server.vercel.app/users/recipes/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

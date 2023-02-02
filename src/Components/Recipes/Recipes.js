@@ -19,7 +19,7 @@ const Recipes = () => {
             queryKey: ['recipes'],
 
             queryFn: async () => {
-                const res = await fetch('http://localhost:5000/recipes');
+                const res = await fetch(' https://recipe-jar-server.vercel.app/recipes');
                 const data = await res.json();
                 return data;
             }
@@ -80,7 +80,7 @@ const Recipes = () => {
                         :
                         
                         <div className='flex justify-center items-center'>
-                            <p className='tex-center text-4xl font-bold'>No Recipe Found </p> <ImSad className='tex-center text-5xl text-orange-600 ml-2'/>
+                            <p className='tex-center text-4xl font-bold'>No Recipe Found </p> <ImSad className='text-center text-5xl text-orange-600 ml-2'/>
                         </div>
                     }
 

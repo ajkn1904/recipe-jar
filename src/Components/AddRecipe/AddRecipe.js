@@ -38,7 +38,7 @@ const AddRecipe = () => {
                     //console.log(data);
                     const recipe = {
                         name: data.name,
-                        image: data.image,
+                        image: result.data.url,
                         ingredients: data.ingredients,
                         cooking_description: data.description,
                         userName: user.displayName,
@@ -49,7 +49,7 @@ const AddRecipe = () => {
                     console.log(recipe);
 
 
-                    fetch('http://localhost:5000/users/recipes', {
+                    fetch(' https://recipe-jar-server.vercel.app/users/recipes', {
                         method: 'POST',
                         headers: {
                             "content-type": "application/json",
@@ -68,11 +68,17 @@ const AddRecipe = () => {
             })
     }
 
+
+
+
+
+
+
     return (
         <div>
             <h1 className='text-2xl font-bold text-center mt-10 mb-4'>ADD RECIPE</h1>
             <div className='flex justify-center items-center mb-20 p-4'>
-                <div className='card shadow-xl w-11/12 bg-slate-100 p-7'>
+                <div className='card shadow-xl w-11/12 md:w-6/12 bg-slate-100 p-7'>
 
                     <form onSubmit={handleSubmit(handleAddRecipe)}>
 

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../logo.svg'
 import { AuthContext } from '../Context/AuthProvider';
+import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
 
@@ -63,15 +64,20 @@ const Header = () => {
             </div>
             {
                 user?.uid ?
-                <div className="navbar-end w-5/12">
-                    <div className="avatar">
-                        <div className="w-10 rounded-full ring ring-warning ring-offset-base-100 ring-offset-2">
-                            <img title={user?.displayName} src={user?.photoURL} alt="" />
+                    <div className="navbar-end w-5/12 mr-3">
+                        <div className="avatar">
+                            <div className="w-10 rounded-full ring ring-warning ring-offset-base-100 ring-offset-2">
+                                {
+                                    user?.photoURL ?
+                                        <img title={user?.displayName} src={user.photoURL} alt="" />
+                                        :
+                                        <FaUser title={user?.displayName}  className='m-auto text-4xl text-orange-600' />
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
-                :
-                <></>
+                    :
+                    <></>
             }
 
         </div >

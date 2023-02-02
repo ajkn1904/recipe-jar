@@ -39,7 +39,7 @@ const SignUp = () => {
         };
         console.log(user)
 
-        fetch('http://localhost:5000/users',
+        fetch(' https://recipe-jar-server.vercel.app/users',
             {
                 method: 'POST',
                 headers: {
@@ -132,7 +132,7 @@ const SignUp = () => {
         <div className='flex justify-center items-center my-20 p-4'>
 
             <div className='card shadow-xl w-96 p-7'>
-                <h1 className='text-xl font-bold text-center my-10'>Register Now</h1>
+                <h1 className='text-xl font-bold text-center my-10'>Sign Up</h1>
 
                 <form onSubmit={handleSubmit(handleSignUp)}>
 

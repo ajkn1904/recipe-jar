@@ -23,7 +23,7 @@ const HomeBannerSlide = ({data}) => {
 
         <div className="absolute flex justify-start gap-4 transform -translate-y-1/2 w-[50%] left-16 top-3/4">
 
-            <button className="btn bg-[#ff762c] btn-lg text-white hover:bg-[#d65023] text-xl"><Link to='/recipes'><IoMdRestaurant className='w-6 h-6 mr-2' />Explore Recipes</Link> </button>
+            <button className="btn bg-[#ff762c] btn-lg text-white hover:bg-[#d65023] text-xl hover:translate-x-2"><Link to='/recipes'><IoMdRestaurant className='text-3xl' />Explore Recipes</Link> </button>
         </div>
 
         <div className="absolute flex justify-end gap-4 transform -translate-y-1/2 left-5 right-5 bottom-2">

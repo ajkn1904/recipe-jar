@@ -14,7 +14,7 @@ const MyRecipeCard = ({ recipe, setEditRecipe }) => {
 
     return (
         <div className="card w-[90%] sm:w-[90%] md:w-[95%] lg:w-[80%] mx-auto bg-base-100 md:card-side lg:card-side shadow-xl" key={_id}>
-            <figure><img src={image} alt="book" className='w-full md:w-72 h-[370px]' /></figure>
+            <figure><img src={image} alt={name} className='w-full md:w-72 h-[370px]' /></figure>
             <div className="card-body md:w-5/12 lg:w-8/12">
 
                 <div className='flex justify-between'>

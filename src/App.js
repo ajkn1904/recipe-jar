@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/recipes/:id",
-        loader: async ({params}) => fetch(`http://localhost:5000/recipes/${params.id}`),
+        loader: async ({params}) => fetch(` https://recipe-jar-server.vercel.app/recipes/${params.id}`),
         element: <RecipeDetails/>
       },
       {
