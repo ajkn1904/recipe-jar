@@ -10,7 +10,11 @@ const MyRecipes = () => {
     const { data = [], isLoading, refetch } = useQuery({
         queryKey: ['recipes'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/recipes?email=${user?.email}`);
+            const res = await fetch(`http://localhost:5000/users/recipes?email=${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
 
             const data = res.json()
             return data;

@@ -1,19 +1,31 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
+import useToken from '../Hooks/useToken/useToken';
 
 const SignIn = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInError, setSignInError] = useState('');
+    const [currentSignInEmail, setCurrentSignInEmail] = useState('');
     const {userSignIn, userSignInWithProvider, loading, setLoading} = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider()
     const location = useLocation()
     const navigate = useNavigate()
     const from = location.state?.from?.pathName || '/'
+    
+    const [token] = useToken(currentSignInEmail);
+
+
+    useEffect(() => {
+        if(token){
+            navigate(from, {replace: true}); 
+        }
+
+    }, [navigate, token, from])
     
 
 
@@ -28,7 +40,7 @@ const SignIn = () => {
             const user = res.user;
             console.log(user);
             setSignInError('');
-            navigate('/');
+            setCurrentSignInEmail(data.email)
             })
             .catch(error => {
                 setSignInError(error.message);
@@ -43,7 +55,8 @@ const SignIn = () => {
         .then(res => {
             const user = res.user;
             console.log(user);
-            navigate(from, {replace: true});
+            setCurrentSignInEmail(user.email)
+            //navigate(from, {replace: true});
         })
         .catch(error => {
             setLoading(false);

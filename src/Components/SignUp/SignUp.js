@@ -1,18 +1,29 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa'
 import { useForm } from 'react-hook-form';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { AuthContext } from '../Context/AuthProvider';
 import { toast } from 'react-hot-toast';
+import useToken from '../Hooks/useToken/useToken';
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm()
     const { userSignUp, userSignInWithProvider, loading, setLoading, userUpdateProfile } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
     const [signUpError, setSignUpError] = useState('');
+    const [currentSignUpEmail, setCurrentSignUpEmail] = useState('');
     const navigate = useNavigate();
 
+    const [token] = useToken(currentSignUpEmail);
+
+
+    useEffect(() => {
+        if (token) {
+            setLoading(false);
+            navigate('/')
+        };
+    }, [token, navigate])
 
 
     if (loading) {
@@ -39,8 +50,9 @@ const SignUp = () => {
             .then(res => res.json())
             .then(result => {
                 console.log(result);
-                navigate('/');
-                setLoading(false);
+                //navigate('/');
+                //setLoading(false);
+                setCurrentSignUpEmail(email)
             })
 
     }
@@ -97,7 +109,7 @@ const SignUp = () => {
 
 
 
-    
+
     const handleGoogleBtn = () => {
         userSignInWithProvider(googleProvider)
             .then(res => {

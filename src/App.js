@@ -8,6 +8,7 @@ import SignIn from './Components/SignIn/SignIn';
 import SignUp from './Components/SignUp/SignUp';
 import RecipeDetails from './RecipeDetails/RecipeDetails';
 import AddRecipe from './Components/AddRecipe/AddRecipe';
+import PrivateRoute from './Components/PrivateRouter/PrivateRoute';
 
 function App() {
 
@@ -31,11 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/myRecipes",
-        element: <MyRecipes/>
+        element: <PrivateRoute><MyRecipes/></PrivateRoute>
       },
       {
         path: "/addRecipe",
-        element: <AddRecipe/>
+        element: <PrivateRoute><AddRecipe/></PrivateRoute>
       },
       {
         path: "/signIn",
