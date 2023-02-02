@@ -22,6 +22,7 @@ const SignIn = () => {
 
     useEffect(() => {
         if(token){
+            setLoading(false)
             navigate(from, {replace: true}); 
         }
 
@@ -60,6 +61,7 @@ const SignIn = () => {
         })
         .catch(error => {
             setLoading(false);
+            console.log(error)
             setSignInError(error.message);
         });
     }

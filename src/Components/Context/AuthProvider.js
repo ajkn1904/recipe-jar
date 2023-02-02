@@ -34,12 +34,13 @@ const AuthProvider = ({ children }) => {
 
     const userSignOut = () => {
         localStorage.removeItem('accessToken')
-        setLoading(false);
+        setLoading(true);
         return signOut(auth);
     }
 
 
     const userUpdateProfile = (profile) => {
+        setLoading(true);
         return updateProfile(auth.currentUser, profile);
     }
 

@@ -10,7 +10,7 @@ const Header = () => {
     const handleSignOut = () => {
         userSignOut()
             .then(() => { })
-            .cath(error => console.log(error))
+            .catch(error => console.log(error))
     }
 
     const menu = <>
@@ -62,7 +62,7 @@ const Header = () => {
                 </ul>
             </div>
             {
-                user?.uid &&
+                user?.uid ?
                 <div className="navbar-end w-5/12">
                     <div className="avatar">
                         <div className="w-10 rounded-full ring ring-warning ring-offset-base-100 ring-offset-2">
@@ -70,6 +70,8 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
+                :
+                <></>
             }
 
         </div >

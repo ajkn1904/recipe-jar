@@ -8,7 +8,7 @@ import { toast } from 'react-hot-toast';
 import useToken from '../Hooks/useToken/useToken';
 
 const SignUp = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm()
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const { userSignUp, userSignInWithProvider, loading, setLoading, userUpdateProfile } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
     const [signUpError, setSignUpError] = useState('');
@@ -116,13 +116,10 @@ const SignUp = () => {
                 const user = res.user;
                 console.log(user);
                 toast.success("Sign Up Successful");
-                setLoading(false);
-                //navigate('/');
                 storeUserDataInDB(user.displayName, user.email);
             })
             .catch(err => {
                 setSignUpError(err.message);
-                setLoading(false);
             });
     }
 
