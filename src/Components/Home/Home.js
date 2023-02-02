@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeBanner from '../AddRecipe/HomeBanner/HomeBanner';
+import HomeBanner from '../HomeBanner/HomeBanner';
 
 const Home = () => {
     return (
